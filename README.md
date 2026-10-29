@@ -74,11 +74,13 @@ git push -u origin main
 
 然后在仓库 **Settings → Pages → Build and deployment**：
 
-- Source 选择 `GitHub Actions`（本仓库已内置 `.github/workflows/pages.yml`，首次推送会自动启用 Pages 并发布）
-- 也可改回 `Deploy from a branch`，Branch 选 `main`、目录 `/ (root)`
-- 约 1 分钟上线：`https://<你的用户名>.github.io/zodiac-query/`
+- **Source**：选择 `Deploy from a branch`（零构建的静态站推荐这条）
+- **Branch**：选择 `main`，目录选择 `/ (root)`，点 **Save**
+- 约 30 秒 ~ 1 分钟上线：`https://<你的用户名>.github.io/zodiac-query/`
 
-工作流说明：`push` 到 `main` 或手动 `workflow_dispatch` 触发；使用官方 `configure-pages`（`enablement: true` 自动开启 Pages）+ `upload-pages-artifact` + `deploy-pages`，产物为仓库根目录，构建日志可在 **Actions** 页查看。
+> 仓库内不放 CI 工作流：本站无构建步骤，分支部署即可，且不会因 `GITHUB_TOKEN` 无 Pages 创建权限而产生失败记录。
+> 若你更想用 Actions 发布，可自行添加 `actions/configure-pages` + `upload-pages-artifact` + `deploy-pages` 工作流，并在 Source 处选 `GitHub Actions`。
+
 
 部署注意事项：
 

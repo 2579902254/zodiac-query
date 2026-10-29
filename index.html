@@ -4,13 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CELESTIAL QUERY · 星轨星座查询终端</title>
-  <meta name="description" content="输入出生日期，从黄道十二宫中提取你的星座档案：元素属性、守护星、性格参数与星图连线。" />
+  <meta name="description" content="输入出生日期，从黄道十二宫中提取你的星座档案：元素属性、守护星、性格参数与星图连线；另含 12×12 星座配对矩阵与每日星象。" />
   <meta name="theme-color" content="#04070f" />
+  <link rel="canonical" href="https://2579902254.github.io/zodiac-query/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CELESTIAL QUERY" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="CELESTIAL QUERY · 星轨星座查询终端" />
+  <meta property="og:description" content="输入出生日期，解析黄道十二宫档案：元素、守护星、性格参数、星图连线；另有 12×12 星座配对矩阵与每日星象。" />
+  <meta property="og:url" content="https://2579902254.github.io/zodiac-query/" />
+  <meta property="og:image" content="https://2579902254.github.io/zodiac-query/og/home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CELESTIAL QUERY · 星轨星座查询终端" />
+  <meta name="twitter:description" content="输入出生日期，解析黄道十二宫档案；12×12 星座配对矩阵与每日星象，纯静态本地演算。" />
+  <meta name="twitter:image" content="https://2579902254.github.io/zodiac-query/og/home.png" />
   <link
     rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23050a13'/%3E%3Cpath d='M16 4l2.6 8.4L27 15l-8.4 2.6L16 26l-2.6-8.4L5 15l8.4-2.6z' fill='%234fe3ff'/%3E%3C/svg%3E"
   />
   <link rel="stylesheet" href="css/style.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "CELESTIAL QUERY · 星轨星座查询终端",
+      "url": "https://2579902254.github.io/zodiac-query/",
+      "inLanguage": "zh-CN",
+      "description": "纯静态星座查询站：生日解析星座档案、12×12 星座配对矩阵、每日星象。"
+    }
+  </script>
 </head>
 <body>
   <!-- 背景层 -->
@@ -25,8 +49,13 @@
     <div class="hud__brand">
       <span class="hud__mark" aria-hidden="true">✦</span>
       <span class="hud__title">CELESTIAL QUERY</span>
-      <span class="hud__tag">v1.0</span>
+      <span class="hud__tag">v1.1</span>
     </div>
+    <nav class="hud__nav" aria-label="站点导航">
+      <a href="./" aria-current="page">首页 / HOME</a>
+      <a href="match/">配对矩阵</a>
+      <a href="#signindex">十二宫</a>
+    </nav>
     <div class="hud__meta">
       <span class="hud__led" aria-hidden="true"></span>
       <span>STAR-LINK ONLINE</span>
@@ -81,6 +110,30 @@
       <article class="panel detail" id="detail" aria-live="polite"></article>
     </section>
 
+    <!-- 今日星象（按日期 + 星座确定性生成） -->
+    <section class="panel transmission" id="transmission" aria-live="polite"></section>
+
+    <!-- 十二宫档案索引（静态内链，便于检索与直达） -->
+    <section class="panel signindex" id="signindex" aria-labelledby="signindex-title">
+      <h2 class="panel__label" id="signindex-title">
+        <span aria-hidden="true">◆</span> ZODIAC ARCHIVE · 十二宫档案
+      </h2>
+      <div class="signindex__grid">
+        <a class="signindex__item" href="aries/" style="--item-hue: 10"><i aria-hidden="true">♈</i>白羊座<em>03.21</em></a>
+        <a class="signindex__item" href="taurus/" style="--item-hue: 42"><i aria-hidden="true">♉</i>金牛座<em>04.20</em></a>
+        <a class="signindex__item" href="gemini/" style="--item-hue: 190"><i aria-hidden="true">♊</i>双子座<em>05.21</em></a>
+        <a class="signindex__item" href="cancer/" style="--item-hue: 208"><i aria-hidden="true">♋</i>巨蟹座<em>06.22</em></a>
+        <a class="signindex__item" href="leo/" style="--item-hue: 30"><i aria-hidden="true">♌</i>狮子座<em>07.23</em></a>
+        <a class="signindex__item" href="virgo/" style="--item-hue: 158"><i aria-hidden="true">♍</i>处女座<em>08.23</em></a>
+        <a class="signindex__item" href="libra/" style="--item-hue: 300"><i aria-hidden="true">♎</i>天秤座<em>09.23</em></a>
+        <a class="signindex__item" href="scorpio/" style="--item-hue: 348"><i aria-hidden="true">♏</i>天蝎座<em>10.24</em></a>
+        <a class="signindex__item" href="sagittarius/" style="--item-hue: 20"><i aria-hidden="true">♐</i>射手座<em>11.23</em></a>
+        <a class="signindex__item" href="capricorn/" style="--item-hue: 168"><i aria-hidden="true">♑</i>摩羯座<em>12.22</em></a>
+        <a class="signindex__item" href="aquarius/" style="--item-hue: 196"><i aria-hidden="true">♒</i>水瓶座<em>01.20</em></a>
+        <a class="signindex__item" href="pisces/" style="--item-hue: 272"><i aria-hidden="true">♓</i>双鱼座<em>02.19</em></a>
+      </div>
+    </section>
+
     <!-- 免责声明 -->
     <section class="disclaimer" aria-labelledby="disclaimer-title">
       <div class="disclaimer__head">
@@ -103,10 +156,16 @@
     <span>CELESTIAL QUERY</span>
     <span class="foot__sep" aria-hidden="true">//</span>
     <span>资料基于传统占星体系整理 · 仅供娱乐参考 · 不构成任何专业建议</span>
+    <nav class="foot__nav" aria-label="页脚导航">
+      <a href="match/">配对矩阵</a>
+      <a href="#signindex">十二宫</a>
+      <a href="sitemap.xml">站点地图</a>
+    </nav>
   </footer>
 
   <script src="js/data.js"></script>
   <script src="js/starfield.js"></script>
+  <script src="js/render.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

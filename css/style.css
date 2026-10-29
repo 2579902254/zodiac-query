@@ -1219,3 +1219,916 @@ body {
 
 
 
+
+/* ============================================================
+ * P0 / P2 扩展组件
+ * 顶部导航 · 星座索引 · 今日星象 · 星座独立页 · 配对矩阵
+ * ============================================================ */
+
+/* ---------------- 顶部导航 ---------------- */
+.hud__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hud__nav a {
+  padding: 6px 10px;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
+    background 0.25s var(--ease);
+}
+
+.hud__nav a:hover,
+.hud__nav a:focus-visible,
+.hud__nav a[aria-current="page"] {
+  color: var(--accent);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  outline: none;
+}
+
+/* ---------------- 星座索引 ---------------- */
+.signindex {
+  margin-top: 22px;
+}
+
+.signindex__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(122px, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.signindex__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  background: rgba(8, 16, 28, 0.5);
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  text-decoration: none;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
+    background 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.signindex__item i {
+  font-style: normal;
+  font-size: 15px;
+  color: hsl(var(--item-hue, 190) 92% 66%);
+  text-shadow: 0 0 12px hsl(var(--item-hue, 190) 92% 66% / 0.45);
+}
+
+.signindex__item em {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-style: normal;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.signindex__item:hover,
+.signindex__item:focus-visible {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--ink);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* ---------------- 今日星象 ---------------- */
+.transmission {
+  margin-top: 22px;
+}
+
+.tst__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 16px;
+  margin: 14px 0 10px;
+}
+
+.tst__sign {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+
+.tst__sign i {
+  font-style: normal;
+  font-size: 17px;
+  color: var(--accent);
+  text-shadow: 0 0 14px var(--accent);
+}
+
+.tst__sign em {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-style: normal;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.tst__date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+.tst__band {
+  margin-left: auto;
+  padding: 3px 9px;
+  border: 1px solid var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.tst__line {
+  margin: 0 0 14px;
+  color: var(--ink-soft);
+  font-size: 13.5px;
+}
+
+.tst__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.tst__cell {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: rgba(10, 20, 34, 0.45);
+}
+
+.tst__cell span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.tst__cell b {
+  display: block;
+  margin-top: 3px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.tst__note {
+  margin: 12px 0 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  line-height: 1.9;
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+
+/* ---------------- 面包屑 / 星座独立页 ---------------- */
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.crumbs a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+.crumbs a:hover,
+.crumbs a:focus-visible {
+  color: var(--accent);
+  border-bottom-color: var(--accent-line);
+  outline: none;
+}
+
+.crumbs span {
+  opacity: 0.45;
+}
+
+.crumbs b {
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.signhero {
+  padding: 22px 0 18px;
+}
+
+.signhero h1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  margin: 8px 0 10px;
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.signhero h1 span {
+  color: var(--accent);
+  text-shadow: 0 0 26px hsl(var(--hue) 92% 66% / 0.45);
+}
+
+.signhero h1 em {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.28em;
+  color: var(--muted);
+}
+
+.signhero p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.signnav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.signnav a {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  background: rgba(8, 16, 28, 0.5);
+  color: var(--ink-soft);
+  font-size: 13px;
+  text-decoration: none;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease),
+    color 0.25s var(--ease);
+}
+
+.signnav a span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+.signnav a b {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 500;
+}
+
+.signnav a:hover,
+.signnav a:focus-visible {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--ink);
+  outline: none;
+}
+
+.signnav a.is-center {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ---------------- 配对矩阵 ---------------- */
+.matchhero {
+  padding: 24px 0 16px;
+}
+
+.matchhero h1 {
+  margin: 8px 0 10px;
+  font-size: clamp(28px, 4.6vw, 42px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.matchhero h1 strong {
+  color: var(--accent);
+  font-weight: 600;
+  text-shadow: 0 0 26px hsl(var(--hue) 92% 66% / 0.45);
+}
+
+.matchhero p {
+  max-width: 700px;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.pairform {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+  align-items: end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.pairform .query__field {
+  max-width: none;
+}
+
+.matrix__scroll {
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: rgba(6, 12, 22, 0.55);
+  overflow-x: auto;
+}
+
+.matrix {
+  display: grid;
+  grid-template-columns: minmax(96px, 118px) repeat(12, minmax(34px, 1fr));
+  gap: 4px;
+  min-width: 640px;
+}
+
+.matrix__row {
+  display: contents;
+}
+
+.matrix__corner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2px;
+  padding: 4px 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.matrix__corner em {
+  font-style: normal;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+}
+
+.matrix__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 4px 2px;
+  color: var(--ink-soft);
+  font-size: 9px;
+  text-decoration: none;
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.matrix__col i {
+  font-style: normal;
+  font-size: 14px;
+  color: hsl(var(--cell-hue) 92% 66%);
+}
+
+.matrix__col em {
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+.matrix__col:hover,
+.matrix__col:focus-visible {
+  background: rgba(120, 200, 255, 0.08);
+  color: var(--ink);
+  outline: none;
+}
+
+.matrix__rowhead {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 8px;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: linear-gradient(90deg, #070e19 72%, rgba(7, 14, 25, 0.9));
+  color: var(--ink-soft);
+  font-size: 11px;
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+
+.matrix__rowhead i {
+  font-style: normal;
+  font-size: 14px;
+  color: hsl(var(--cell-hue) 92% 66%);
+}
+
+.matrix__rowhead em {
+  font-style: normal;
+  white-space: nowrap;
+}
+
+.matrix__rowhead:hover,
+.matrix__rowhead:focus-visible {
+  color: var(--accent);
+  outline: none;
+}
+
+
+.matrix__cell {
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: rgba(10, 22, 38, 0.5);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.18s var(--ease), border-color 0.18s var(--ease),
+    box-shadow 0.18s var(--ease), color 0.18s var(--ease);
+}
+
+.matrix__cell b {
+  font-weight: 500;
+}
+
+.matrix__cell[data-band="90"] {
+  background: rgba(79, 227, 255, 0.17);
+  color: #b7f6ff;
+}
+
+.matrix__cell[data-band="82"] {
+  background: rgba(120, 255, 214, 0.13);
+  color: #b6ffe6;
+}
+
+.matrix__cell[data-band="74"] {
+  background: rgba(155, 123, 255, 0.15);
+  color: #d3c6ff;
+}
+
+.matrix__cell[data-band="66"] {
+  background: rgba(255, 196, 94, 0.12);
+  color: #ffe0ac;
+}
+
+.matrix__cell[data-band="0"] {
+  background: rgba(255, 110, 130, 0.1);
+  color: #ffc2cb;
+}
+
+.matrix__cell:hover,
+.matrix__cell:focus-visible,
+.matrix__cell.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 0 14px -2px var(--accent);
+  color: #fff;
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.matrix__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.matrix__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.matrix__legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--line);
+}
+
+.matrix__legend i[data-band="90"] {
+  background: rgba(79, 227, 255, 0.35);
+}
+
+.matrix__legend i[data-band="82"] {
+  background: rgba(120, 255, 214, 0.3);
+}
+
+.matrix__legend i[data-band="74"] {
+  background: rgba(155, 123, 255, 0.35);
+}
+
+.matrix__legend i[data-band="66"] {
+  background: rgba(255, 196, 94, 0.3);
+}
+
+.matrix__legend i[data-band="0"] {
+  background: rgba(255, 110, 130, 0.3);
+}
+
+/* ---------------- 配对读数 ---------------- */
+.pair__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 26px;
+  margin-top: 14px;
+}
+
+.pair__num b {
+  font-family: var(--font-mono);
+  font-size: 46px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--accent);
+  text-shadow: 0 0 26px hsl(var(--hue) 92% 66% / 0.4);
+}
+
+.pair__num span {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+.pair__band b {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.pair__band em {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+.pair__band span {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.pair__sides {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+
+.pair__side {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 220px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  background: rgba(10, 20, 34, 0.5);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.pair__side i {
+  font-style: normal;
+  font-size: 24px;
+  color: hsl(var(--cell-hue) 92% 66%);
+  text-shadow: 0 0 16px hsl(var(--cell-hue) 92% 66% / 0.5);
+}
+
+.pair__side b {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pair__side em {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.pair__side:hover,
+.pair__side:focus-visible {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  outline: none;
+}
+
+.pair__x {
+  font-size: 18px;
+  color: var(--muted);
+}
+
+
+.pair__narrative {
+  margin: 0 0 16px;
+  color: var(--ink-soft);
+  font-size: 13.5px;
+}
+
+.pair__meters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 20px;
+  margin-bottom: 18px;
+}
+
+.pmeter {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr) 26px;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--muted);
+}
+
+.pmeter__name em {
+  display: block;
+  font-style: normal;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  opacity: 0.65;
+}
+
+.pmeter__track {
+  position: relative;
+  height: 4px;
+  background: rgba(120, 200, 255, 0.14);
+  overflow: hidden;
+}
+
+.pmeter__fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-soft), var(--accent));
+  box-shadow: 0 0 10px -2px var(--accent);
+}
+
+.pmeter__val {
+  text-align: right;
+  color: var(--accent);
+}
+
+.pair__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.pair__same {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.pair__note {
+  margin: 14px 0 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  line-height: 1.9;
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+.btn--ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 11.5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+  outline: none;
+}
+
+.foot__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+
+.foot__nav a {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: color 0.25s var(--ease);
+}
+
+.foot__nav a:hover,
+.foot__nav a:focus-visible {
+  color: var(--accent);
+  outline: none;
+}
+
+/* ---------------- 扩展组件响应式 ---------------- */
+@media (max-width: 900px) {
+  .pairform {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pairform .btn {
+    grid-column: 1 / -1;
+  }
+
+  .matrix {
+    grid-template-columns: 92px repeat(12, minmax(32px, 1fr));
+    min-width: 560px;
+  }
+
+  .matrix__cell {
+    height: 27px;
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 760px) {
+  .hud__nav {
+    font-size: 9px;
+    gap: 2px;
+  }
+
+  .hud__nav a {
+    padding: 4px 6px;
+  }
+
+  .pair__meters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .hud__nav {
+    display: none;
+  }
+
+  .tst__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .signindex__grid {
+    grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+    gap: 6px;
+  }
+
+  .signnav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pairform {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .matrix {
+    min-width: 520px;
+  }
+}
+
+/* ---------------- 说明卡片 / 行内链接 ---------------- */
+.rules {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.rules article {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  background: rgba(10, 20, 34, 0.45);
+}
+
+.rules h3 {
+  margin: 0 0 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.rules p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+a.link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-line);
+  transition: border-color 0.25s var(--ease);
+}
+
+a.link:hover,
+a.link:focus-visible {
+  border-bottom-color: var(--accent);
+  outline: none;
+}
+
+.hud__brand a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hud__brand a:hover,
+.hud__brand a:focus-visible {
+  color: var(--accent);
+  outline: none;
+}
+
+.signindex .panel__label {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .rules {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+
+/* ---------------- 星座符号字形统一 ----------------
+   Windows 缺字形时会回退到 Segoe UI Emoji，把 ♈♉♊… 画成紫色方块，
+   无法跟随主题色。这里统一指定符号字体，让符号按 --item-hue / --accent 上色。 */
+:root {
+  --font-symbol: "Segoe UI Symbol", "Noto Sans Symbols 2", "Apple Symbols",
+    "Symbola", sans-serif;
+}
+
+.wheel__symbol,
+.wheel__btn,
+.detail__badge,
+.signhero h1 span,
+.tst__sign i,
+.signindex__item i,
+.matrix__col i,
+.matrix__rowhead i,
+.pair__side i,
+.signnav a b i {
+  font-family: var(--font-symbol);
+  font-variant-emoji: text;
+}
+
+.signnav a b i {
+  font-style: normal;
+  color: var(--accent);
+}
+

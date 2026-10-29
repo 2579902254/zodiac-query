@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /og/card.html
+
+Sitemap: https://2579902254.github.io/zodiac-query/sitemap.xml

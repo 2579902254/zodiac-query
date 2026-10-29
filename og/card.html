@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>OG CARD · 1200×630 分享图生成器</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    :root { --hue: 190; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; }
+    body {
+      position: relative;
+      background: #04070f;
+      color: #e8f4ff;
+      font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(90, 180, 220, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90, 180, 220, 0.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .glow-a, .glow-b { position: absolute; border-radius: 50%; }
+    .glow-a {
+      left: -260px; top: -380px; width: 900px; height: 900px;
+      background: radial-gradient(circle, hsl(var(--hue) 90% 60% / 0.3), transparent 62%);
+    }
+    .glow-b {
+      right: -300px; bottom: -420px; width: 820px; height: 820px;
+      background: radial-gradient(circle, hsl(calc(var(--hue) + 40) 90% 58% / 0.18), transparent 65%);
+    }
+    .frame {
+      position: absolute; inset: 26px;
+      border: 1px solid hsl(var(--hue) 80% 60% / 0.32);
+    }
+    .frame::before, .frame::after {
+      content: ""; position: absolute; width: 34px; height: 34px;
+      border: 2px solid hsl(var(--hue) 92% 66% / 0.85);
+    }
+    .frame::before { left: -1px; top: -1px; border-right: none; border-bottom: none; }
+    .frame::after { right: -1px; bottom: -1px; border-left: none; border-top: none; }
+    .card {
+      position: relative; display: flex; flex-direction: column;
+      justify-content: space-between; height: 100%;
+      padding: 58px 74px 52px;
+    }
+    .top {
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 16px; letter-spacing: 0.28em;
+      color: hsl(var(--hue) 90% 74% / 0.92);
+    }
+    .tag { color: rgba(190, 220, 240, 0.55); letter-spacing: 0.22em; }
+    .mid { display: flex; align-items: center; gap: 54px; }
+    .symbol {
+      font-size: 210px; line-height: 1;
+      color: hsl(var(--hue) 92% 68%);
+      text-shadow: 0 0 70px hsl(var(--hue) 92% 62% / 0.55);
+    }
+    .label {
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 18px; letter-spacing: 0.26em;
+      color: rgba(190, 220, 240, 0.62);
+      margin-bottom: 14px;
+    }
+    h1 { font-size: 92px; font-weight: 600; letter-spacing: 0.04em; line-height: 1.06; }
+    .desc { margin-top: 16px; font-size: 26px; letter-spacing: 0.04em; color: rgba(214, 234, 248, 0.78); }
+    .bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid hsl(var(--hue) 80% 60% / 0.28);
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 17px; letter-spacing: 0.14em;
+      color: rgba(190, 220, 240, 0.66);
+    }
+    .stat { color: hsl(var(--hue) 90% 72% / 0.85); }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="glow-a"></div>
+  <div class="glow-b"></div>
+  <div class="frame"></div>
+
+  <div class="card">
+    <div class="top">
+      <span>✦ CELESTIAL QUERY</span>
+      <span class="tag" id="tag">STAR-LINK TERMINAL · v1.1</span>
+    </div>
+
+    <div class="mid">
+      <div class="symbol" id="symbol">✦</div>
+      <div class="text">
+        <div class="label" id="label">ZODIAC ARCHIVE</div>
+        <h1 id="name">星轨星座查询终端</h1>
+        <p class="desc" id="desc">十二宫档案 · 12×12 配对矩阵 · 每日星象</p>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <span id="url">2579902254.github.io/zodiac-query/</span>
+      <span class="stat">12 SIGNS · 144 COMBOS · 100% LOCAL</span>
+    </div>
+  </div>
+
+  <script src="card.js"></script>
+</body>
+</html>
+

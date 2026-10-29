@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CELESTIAL QUERY · 星轨星座查询终端</title>
+  <meta name="description" content="输入出生日期，从黄道十二宫中提取你的星座档案：元素属性、守护星、性格参数与星图连线。" />
+  <meta name="theme-color" content="#04070f" />
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23050a13'/%3E%3Cpath d='M16 4l2.6 8.4L27 15l-8.4 2.6L16 26l-2.6-8.4L5 15l8.4-2.6z' fill='%234fe3ff'/%3E%3C/svg%3E"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- 背景层 -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="bg-nebula" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-scan" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <!-- 顶部 HUD -->
+  <header class="hud">
+    <div class="hud__brand">
+      <span class="hud__mark" aria-hidden="true">✦</span>
+      <span class="hud__title">CELESTIAL QUERY</span>
+      <span class="hud__tag">v1.0</span>
+    </div>
+    <div class="hud__meta">
+      <span class="hud__led" aria-hidden="true"></span>
+      <span>STAR-LINK ONLINE</span>
+      <span class="hud__sep" aria-hidden="true">/</span>
+      <span id="sys-clock">00:00:00</span>
+    </div>
+  </header>
+
+  <main class="shell">
+    <!-- 查询区 -->
+    <section class="hero">
+      <p class="eyebrow"><span class="eyebrow__line" aria-hidden="true"></span>黄道十二宫 · 星象数据库</p>
+      <h1 class="hero__title">星轨<em>查询</em>终端</h1>
+      <p class="hero__desc">
+        输入出生日期，终端将从黄道带中提取对应的星座档案 —— 元素属性、守护星、性格参数，以及一段示意星图连线。
+      </p>
+
+      <form class="query" id="query-form" novalidate>
+        <div class="query__field">
+          <label for="birthdate">出生日期 / DATE OF BIRTH</label>
+          <input type="date" id="birthdate" name="birthdate" min="1900-01-01" max="2100-12-31" />
+        </div>
+        <button type="submit" class="btn">
+          <span class="btn__text">解析星轨</span>
+          <span class="btn__arrow" aria-hidden="true">⟶</span>
+        </button>
+      </form>
+      <p class="query__hint" id="query-hint">支持 1900—2100 年任意日期；留空则解析今日星象。</p>
+    </section>
+
+    <!-- 控制台 -->
+    <section class="console">
+      <div class="panel wheel-panel">
+        <div class="panel__label"><span aria-hidden="true">◆</span> ZODIAC RING · 点击切换</div>
+        <div class="wheel" id="wheel" role="group" aria-label="黄道十二宫轮盘">
+          <div class="wheel__ring" aria-hidden="true"></div>
+          <div class="wheel__ring wheel__ring--inner" aria-hidden="true"></div>
+          <div class="wheel__core">
+            <span class="wheel__symbol" id="core-symbol">♈</span>
+            <span class="wheel__name" id="core-name">白羊座</span>
+          </div>
+        </div>
+        <div class="wheel__legend">
+          <span class="lg lg--fire">火</span>
+          <span class="lg lg--earth">土</span>
+          <span class="lg lg--air">风</span>
+          <span class="lg lg--water">水</span>
+          <span class="lg lg--note">元素</span>
+        </div>
+      </div>
+
+      <article class="panel detail" id="detail" aria-live="polite"></article>
+    </section>
+
+    <!-- 免责声明 -->
+    <section class="disclaimer" aria-labelledby="disclaimer-title">
+      <div class="disclaimer__head">
+        <span class="disclaimer__icon" aria-hidden="true">⚠</span>
+        <h2 class="disclaimer__title" id="disclaimer-title">免责声明 / DISCLAIMER</h2>
+      </div>
+      <ul class="disclaimer__list">
+        <li><b>娱乐属性</b>星座日期划分、性格描述与「星象参数」（能量 / 情感 / 直觉 / 理性）均为内容化创作，仅供娱乐与自我探索参考，不构成任何形式的预测、诊断或专业建议。</li>
+        <li><b>非科学依据</b>占星学不属于科学体系，本站内容不具备科学有效性，请勿据此作出健康、财务、婚恋、职业等任何重要决策。</li>
+        <li><b>日期口径</b>星座交界日采用常见西方占星资料的通行划分，不同流派或个别年份可能存在 1 天差异。</li>
+        <li><b>星图说明</b>星图为形状示意图，并非精确天文星表坐标，不可用于天文观测或导航。</li>
+        <li><b>隐私说明</b>全部解析在浏览器本地完成，出生日期不会被上传、收集或存储；地址栏中的 <code>#leo</code> 等锚点仅用于定位星座。</li>
+        <li><b>责任限制</b>本站为个人技术演示项目，内容按「现状」提供，对因使用本站内容所产生的任何直接或间接后果不承担责任。</li>
+      </ul>
+      <p class="disclaimer__foot">继续使用本站即表示你已阅读并同意上述说明。</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>CELESTIAL QUERY</span>
+    <span class="foot__sep" aria-hidden="true">//</span>
+    <span>资料基于传统占星体系整理 · 仅供娱乐参考 · 不构成任何专业建议</span>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/starfield.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
